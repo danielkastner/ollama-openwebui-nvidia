@@ -91,10 +91,15 @@ else
 fi
 
 # ---- Print Environment Variables ----
-echo "[entrypoint] Executing environment-runpod.sh"
-./environment.sh
-echo "[entrypoint] Executing environment-vastai.sh"
-./environment.sh
+if [[ "${ENVIRONMENT:-}" == "RUNPOD" ]]; then
+  echo "[entrypoint] Printing Environment for runpod.io"
+  ./environment/runpod/environment.sh
+elif [[ "${ENVIRONMENT:-}" == "VASTAI" ]]; then
+  echo "[entrypoint] Printing Environment for Vast.ai"
+  ./environment/vastai/environment.sh
+else
+  echo "[entrypoint] Environment not set or Value '${ENVIRONMENT}' not in ['RUNPOD', 'VASTAI']"
+fi
 
 # ----- Open WebUI (foreground) if enabled-----
 if [[ "${DISABLE_WEBUI:-1}" == "1" ]]; then
