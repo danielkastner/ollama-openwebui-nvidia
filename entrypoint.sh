@@ -60,7 +60,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 # ----- Ollama -----
 echo "[entrypoint] Starting ollama serve..."
-OLLAMA_CONTEXT_LENGTH=${OLLAMA_CONTEXT_LENGTH:-131072} ollama serve >/var/log/ollama.log 2>&1 &
+OLLAMA_CONTEXT_LENGTH=${OLLAMA_CONTEXT_LENGTH:-131072} OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-24h} ollama serve >/var/log/ollama.log 2>&1 &
 OLLAMA_PID=$!
 
 echo "[entrypoint] Waiting for Ollama API..."

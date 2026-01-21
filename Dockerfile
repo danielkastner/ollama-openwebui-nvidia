@@ -3,6 +3,7 @@ FROM debian:bookworm
 RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates curl tini \
       openssh-server sudo zstd \
+      lshw \
     && rm -rf /var/lib/apt/lists/*
 
 # OpenSSH runtime dirs + host keys
