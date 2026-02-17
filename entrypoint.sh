@@ -101,6 +101,12 @@ else
   echo "[entrypoint] Environment not set or Value '${ENVIRONMENT}' not in ['RUNPOD', 'VASTAI']"
 fi
 
+# ---- Print AI-Tools ----
+echo "[entrypoint] Listing AI-Tools..."
+for tool in ./aitools/*.sh; do
+  bash "$tool"
+done
+
 # ----- Open WebUI (foreground) if enabled-----
 if [[ "${DISABLE_WEBUI:-1}" == "1" ]]; then
   echo "[entrypoint] Open WebUI disabled, will sleep instead...";
