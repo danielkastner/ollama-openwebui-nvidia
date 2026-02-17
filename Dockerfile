@@ -48,6 +48,9 @@ ENV OLLAMA_MODEL="llama3.1:8b" \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+COPY aitools /aitools
+RUN chmod +x aitools/*.sh
+
 COPY environment/runpod/environment.sh /environment/runpod/environment.sh
 RUN chmod +x /environment/runpod/environment.sh
 COPY environment/vastai/environment.sh /environment/vastai/environment.sh
