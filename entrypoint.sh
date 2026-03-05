@@ -56,7 +56,13 @@ fi
 
 # ---- Installing Ollama ----
 echo "[entrypoint] Installing Ollama via fetching Script"
-curl -fsSL https://ollama.com/install.sh | sh
+if [[ "${OLLAMA_VERSION:-}" != "" ]]; then
+  echo "[entrypoint] Installing Version ${OLLAMA_VERSION} of Ollama"
+  curl -fsSL https://ollama.com/install.sh | OLLAMA_VERSION="${OLLAMA_VERSION}" sh
+else
+  echo "[entrypoint] Installing latest Version of Ollama"
+  curl -fsSL https://ollama.com/install.sh | sh
+fi
 
 # ----- Ollama -----
 echo "[entrypoint] Starting ollama serve..."
